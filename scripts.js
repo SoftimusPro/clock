@@ -1,6 +1,9 @@
 console.log("object");
 const tiempo = document.querySelector(".tiempo")
 const fecha = document.querySelector(".fecha")
+const pronostico = document.querySelector(".pronostico")
+
+const apiUbicacion = '5dcc0d23edb9b9e60b9eedab244a073d'
 
 function relojDigital() {
     let f = new Date()
@@ -19,6 +22,16 @@ function relojDigital() {
     
 }
 
+async function obtenerUbicacion() {
+    const url = `https://api.ipapi.com/api/check?access_key=${apiUbicacion}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data); // Muestra los datos de ubicación en la consola
+    pronostico.innerHTML = `El tiempo en: ${data.city}, ${data.region_name}, ${data.country_name} para hoy es:`;
+}
+
 setInterval(() => {
     relojDigital()
 }, 1000);
+
+obtenerUbicacion()
