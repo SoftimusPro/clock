@@ -39,8 +39,9 @@ async function obtenerTiempo(latitudeIp, longitudeIp) {
         const response = await fetch(url);
         const data = await response.json();
         const temperatura = Math.floor(data.main.temp)
+        const descripcionTiempo = data.weather[0].description.toUpperCase()
         console.log(data); // Muestra los datos del tiempo en la consola
-        pronostico.innerHTML += ` ${data.weather[0].description}, ${temperatura}°C`;
+        pronostico.innerHTML += ` ${descripcionTiempo}, con una temperatura de ${temperatura}°C.`;
 }
 
 setInterval(() => {
