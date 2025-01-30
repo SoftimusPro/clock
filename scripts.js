@@ -38,8 +38,9 @@ async function obtenerTiempo(latitudeIp, longitudeIp) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitudeIp}&lon=${longitudeIp}&units=metric&appid=${apiTiempo}&lang=es`
         const response = await fetch(url);
         const data = await response.json();
+        const temperatura = Math.floor(data.main.temp)
         console.log(data); // Muestra los datos del tiempo en la consola
-        pronostico.innerHTML += ` ${data.weather[0].description}, ${data.main.temp}°C`;
+        pronostico.innerHTML += ` ${data.weather[0].description}, ${temperatura}°C`;
 }
 
 setInterval(() => {
